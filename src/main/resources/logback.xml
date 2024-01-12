@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+  <property resource="logback.properties" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default	-->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
+    </encoder>
+<!--
+    <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+        <jsonFormatter
+            class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+            <prettyPrint>true</prettyPrint>
+        </jsonFormatter>
+        <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+    </layout>
+-->
+  </appender>
+
+  <appender name="BSC_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>${tomcat.home}/logs/bsc-api.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<!-- daily rollover -->
+		<fileNamePattern>${tomcat.home}/logs/bsc-api.log.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+		<!-- keep 180 days' worth of history -->
+		<maxHistory>180</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+		<charset>UTF-8</charset>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</layout>
+    </encoder>
+  </appender>
+
+  <root>
+  	<level value="${debug.level}" />
+	<appender-ref ref="${appender.name}" />
+  </root>
+
+</configuration>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- ############ H2 SQL##################-->
+	<!-- Master DB-->
+    <bean id="mysqlMaster" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=mysql;DATABASE_TO_LOWER=TRUE;INIT=create schema if not exists one\;SET SCHEMA one"/>
+        <property name="username" value="${h2.id}"/>
+        <property name="password" value="${h2.pwd}"/>
+    </bean>
+    <!-- *********If you want to add a new Slave DB 02, please check the AdminSystemServiceImpl.udtDatabase, you need to add some coding.**********-->
+    
+    <!-- Slave DB 00 -->
+    <bean id="mysqlSlave00" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=mysql;DATABASE_TO_LOWER=TRUE;INIT=create schema if not exists one\;SET SCHEMA one"/>
+        <property name="username" value="${h2.id}"/>
+        <property name="password" value="${h2.pwd}"/>
+    </bean>
+
+    <!-- Slave DB 01 -->
+    <bean id="mysqlSlave01" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=mysql;DATABASE_TO_LOWER=TRUE;INIT=create schema if not exists one\;SET SCHEMA one"/>
+        <property name="username" value="${h2.id}"/>
+        <property name="password" value="${h2.pwd}"/>
+    </bean>
+
+    <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+    	<property name="sqlScriptEncoding" value="UTF-8"/>
+        <property name="scripts">
+            <list>
+            	<value>classpath:functions/functions.sql</value>
+            	<value>classpath:sql/create-table.sql</value>
+            	<value>classpath:sql/insert-data.sql</value>
+            </list>
+        </property>
+        <property name="continueOnError" value="true"/>
+    </bean>
+    <bean id="dbCleanup" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+			<list>
+                <value>classpath:sql/drop-table.sql</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mInit" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="mysqlMaster"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+   		<property name="databaseCleaner"><ref bean="dbCleanup"/></property>
+ 		<property name="enabled" value="true" />
+    </bean>
+
+    <bean id="sInit0" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="mysqlSlave00"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+   		<property name="databaseCleaner"><ref bean="dbCleanup"/></property>
+ 		<property name="enabled" value="true" />
+    </bean>
+
+    <bean id="sInit1" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="mysqlSlave01"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+   		<property name="databaseCleaner"><ref bean="dbCleanup"/></property>
+ 		<property name="enabled" value="true" />
+    </bean>
+
+</beans>
