@@ -11,7 +11,7 @@
 
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
-	<bean id="cipherUtility" class="io.utility.security.CipherUtility" scope="singleton">
+	<!-- <bean id="cipherUtility" class="io.utility.security.CipherUtility" scope="singleton">
 		<constructor-arg value="${security.cipher.pwd}"/>
 	</bean>
 	
@@ -33,6 +33,6 @@
 	
 	<bean id="SENDER" class="java.lang.String" scope="singleton">
 		<constructor-arg value="${email.emailer.sender}"/>
-	</bean>
+	</bean> -->
 	
 </beans>

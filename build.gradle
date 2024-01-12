@@ -1,3 +1,5 @@
+// Update libraries
+// gradle --build-cache assemble
 buildscript {
   repositories {
     jcenter()
@@ -18,13 +20,9 @@ apply plugin: "org.gretty"
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+	//mavenLocal()
 	jcenter()
 }
-
-// ./gradlew sonarqube \
-//   -Dsonar.projectKey=api-apps \
-//   -Dsonar.host.url=http://192.168.0.182:9000 \
-//   -Dsonar.login=6ecda07aa5af786721301b9ae8f2966628ed34b7
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -46,10 +44,6 @@ ext {
 
 dependencies {
 	implementation 'org.slf4j:slf4j-api:' + slf4jVersion
-	runtimeOnly 'org.slf4j:jcl-over-slf4j:' + slf4jVersion
-	implementation 'ch.qos.logback:logback-core:' + logbackVersion
-	implementation 'ch.qos.logback:logback-classic:' + logbackVersion
-
     implementation "org.springframework:spring-core:" + springVersion
 	implementation "org.springframework:spring-beans:" + springVersion
 	implementation "org.springframework:spring-web:" + springVersion
@@ -58,43 +52,16 @@ dependencies {
 	implementation 'org.springframework:spring-context-support:' + springVersion
 	implementation 'org.springframework:spring-jdbc:' + springVersion
 	implementation 'org.springframework.security:spring-security-core:' + springSecrityVersion
-
-/**
 	implementation 'org.apache.commons:commons-dbcp2:2.9.0'
 	implementation 'org.apache.commons:commons-pool2:2.11.1'
-	implementation 'commons-pool:commons-pool:1.6'
-	implementation 'org.apache.commons:commons-collections4:4.4'
-
 	implementation "org.mybatis:mybatis:3.5.11"
 	implementation 'org.mybatis:mybatis-spring:2.0.7'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.5'
-
-	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
-	implementation "org.freemarker:freemarker:2.3.31"
-
-	implementation 'org.apache.poi:poi:4.1.2'
-	implementation 'org.apache.poi:poi-ooxml:4.1.2'
-	implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2'
-
-	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.13.4'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
-
-	implementation 'commons-fileupload:commons-fileupload:1.5'
 	implementation 'org.springframework.session:spring-session-data-redis:2.7.2'
 	implementation 'org.springframework.data:spring-data-redis:2.7.14'
-	implementation 'io.lettuce:lettuce-core:6.2.5.RELEASE'
-	implementation 'com.danga.memcached:danga-memcached:2.6.6'
-
-	implementation 'org.jsoup:jsoup:1.16.1'
-
-	providedCompile 'org.apache.tomcat:tomcat-servlet-api:' + tomcatVersion
-	providedCompile 'org.apache.tomcat:tomcat-catalina:' + tomcatVersion
-
-	testImplementation 'com.h2database:h2:2.1.214'
-	testImplementation 'org.springframework:spring-test:' + springVersion
-    testImplementation "junit:junit:4.+"
-    **/
+	implementation "org.freemarker:freemarker:2.3.31"
+	runtimeOnly 'org.slf4j:jcl-over-slf4j:' + slf4jVersion
+	
 }
 
 farm {

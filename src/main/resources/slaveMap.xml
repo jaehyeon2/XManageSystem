@@ -14,9 +14,7 @@
  	</settings>
 
 	<mappers>
-		<mapper resource="mapper/core/slave/sCompanySql.xml" />
-		<mapper resource="mapper/core/slave/sCoachSql.xml" />
-		<mapper resource="mapper/core/slave/sUserSql.xml" />
+		<!-- <mapper resource="mapper/sLoginSql.xml" /> -->
 	</mappers>
 
 </configuration>

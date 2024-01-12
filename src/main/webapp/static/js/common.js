@@ -48,35 +48,3 @@ function validateForm(formId) {
 	//}
 	return true;
 }
-
-function isAllNumber(obj) {
-	
-	var numbers = /^[-+]?[0-9]+$/;
-
-	if(obj.value.match(numbers)) {
-		console.log("this is a number");
-		return true;
-	} else {
-		console.log("error");
-		return false;
-	}
-}
-
-/**
- * Check email format
- * 
- * @param str
- * @returns
- */
-function checkEmail(str) {
-     var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-     if(!regEmail.test(str)) {
-    	 console.log("checkEmail false ");
-         return false;
-     } else {
-    	 console.log("checkEmail true ");
-         return true;
-     }
-}
-
