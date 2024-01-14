@@ -8,4 +8,6 @@ import com.example.project.beans.model.common.UserModel;
 public interface SUserDao {
 
 	public UserModel sltUser(Map<String, Object> map) throws SQLException;
+	
+	public boolean checkEmail(Map<String, Object> map) throws SQLException;
 }

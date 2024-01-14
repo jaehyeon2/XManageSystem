@@ -2,6 +2,20 @@
 
 <mapper namespace="com.example.project.dao.SUserDao">
 	<select id="sltUser" resultType="com.example.project.model.common.UserModel">
-		select 
+		SELECT
+			*
+		FROM
+			user
+		WHERE
+			user_email = #{userEmail} AND
+			user_pwd = #{userPwd}
+	</select>
+	<select id="checkEmail" resultType="boolean">
+		SELECT
+			if(count(*) = 0, 1, 0)
+  		FROM
+  			user
+		WHERE
+			user_email = #{userEmail}
 	</select>
 </mapper>

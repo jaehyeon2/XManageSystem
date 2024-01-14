@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.example.project.dao.MUserDao">
+	<insert id="istUser">
+		INSERT INTO user (
+			user_no,
+			user_nm,
+			user_rank,
+			user_pos,
+			user_email,
+			user_pwd,
+			user_phone,
+			group_no,
+			user_deleted,
+			insert_time,
+			update_time
+		) VALUES (
+			#{userNo},
+			#{userNm},
+			#{userRank},
+			#{userPos},
+			#{userEmail},
+			#{userPwd},
+			#{userPhone},
+			#{groupNo},
+			'0',
+			now(),
+			now()
+		)
+	</insert>
+</mapper>
