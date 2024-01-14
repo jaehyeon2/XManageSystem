@@ -4,9 +4,10 @@ public class UserParam extends GroupParam{
 	
 	private String userId;
 	private String userNo;
-	private String userName;
+	private String userNm;
 	private String userRank;
-	private String userPosition;
+	private String userPos;
+	private String userEmail;
 	private String userPwd;
 	private String userPhone;
 	
@@ -22,11 +23,11 @@ public class UserParam extends GroupParam{
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUserNm() {
+		return userNm;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
 	}
 	public String getUserRank() {
 		return userRank;
@@ -34,11 +35,17 @@ public class UserParam extends GroupParam{
 	public void setUserRank(String userRank) {
 		this.userRank = userRank;
 	}
-	public String getUserPosition() {
-		return userPosition;
+	public String getUserPos() {
+		return userPos;
 	}
-	public void setUserPosition(String userPosition) {
-		this.userPosition = userPosition;
+	public void setUserPosi(String userPos) {
+		this.userPos = userPos;
+	}
+	public String getUserEmail(){
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail){
+		this.userEmail = userEmail;
 	}
 	public String getUserPwd() {
 		return userPwd;
