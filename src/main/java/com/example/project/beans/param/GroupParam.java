@@ -4,7 +4,7 @@ public class GroupParam {
 	
 	private String groupId;
 	private String groupNo;
-	private String groupName;
+	private String groupNm;
 	
 	public String getGroupId() {
 		return groupId;
@@ -18,11 +18,11 @@ public class GroupParam {
 	public void setGroupNo(String groupNo) {
 		this.groupNo = groupNo;
 	}
-	public String getGroupName() {
-		return groupName;
+	public String getGroupNm() {
+		return groupNm;
 	}
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+	public void setGroupNm(String groupNm) {
+		this.groupNm = groupNm;
 	}
 
 }
