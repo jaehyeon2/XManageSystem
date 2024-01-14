@@ -14,10 +14,4 @@ public class IndexServiceImpl implements IndexService {
 	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Override
-	public void saveIndexKey(String msNote, long lngMsNo, String userId) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

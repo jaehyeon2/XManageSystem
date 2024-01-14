@@ -13,6 +13,7 @@ public class UserModel extends GroupModel implements Serializable{
 	private String userPosition;
 	private String userEmail;
 	private String userPwd;
+	private String userPhone;
 	
 	public String getUserId() {
 		return userId;
@@ -56,7 +57,12 @@ public class UserModel extends GroupModel implements Serializable{
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-	
+	public String getUserPhone(){
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone){
+		this.userPhone = userPhone;
+	}
 	
 	
 }
