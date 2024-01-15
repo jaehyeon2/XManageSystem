@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.project.beans.model.common.UserModel;
-import com.example.project.beans.param.UserParam;
+import com.example.project.beans.param.common.UserParam;
 import com.example.project.service.LoginService;
 
 import jakarta.validation.Valid;
