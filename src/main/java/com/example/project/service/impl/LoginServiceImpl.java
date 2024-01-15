@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.UserModel;
-import com.example.project.beans.param.UserParam;
+import com.example.project.beans.param.LoginParam;
+import com.example.project.beans.param.common.UserParam;
 import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
 import com.example.project.service.LoginService;
@@ -27,17 +28,17 @@ public class LoginServiceImpl implements LoginService{
 	private SqlSession sDbDao;
 	
 	@Override
-	public boolean saveUser(UserParam userParam) throws Exception{
+	public boolean saveUser(LoginParam loginParam) throws Exception{
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("userNo", userParam.getUserNo());
-			map.put("userNm", userParam.getUserNm());
-			map.put("userRank", userParam.getUserRank());
-			map.put("userPos", userParam.getUserPos());
-			map.put("userEmail", userParam.getUserEmail());
-			map.put("userPwd", userParam.getUserPwd());
-			map.put("userPhone", userParam.getUserPhone());
-			map.put("groupNo", userParam.getGroupNo());
+			map.put("userNo", loginParam.getUserNo());
+			map.put("userNm", loginParam.getUserNm());
+			map.put("userRank", loginParam.getUserRank());
+			map.put("userPos", loginParam.getUserPos());
+			map.put("userEmail", loginParam.getUserEmail());
+			map.put("userPwd", loginParam.getUserPwd());
+			map.put("userPhone", loginParam.getUserPhone());
+			map.put("groupNo", loginParam.getGroupNo());
 			
 			int result = mDbDao.getMapper(MUserDao.class).istUser(map);
 			
@@ -54,19 +55,19 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public UserModel validateLoginUser(UserParam userParam) throws Exception{
+	public UserModel validateLoginUser(LoginParam loginParam) throws Exception{
 		
 		UserModel userModel = null;
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			if (userParam.getUserEmail()==null | userParam.getUserPwd()==null){
+			if (loginParam.getUserEmail()==null | loginParam.getUserPwd()==null){
 				logger.info("LoginServiceImpl::validateLoginUser::Info: parameter is null");
 				return null;
 			}
 			
-			map.put("userEmail", userParam.getUserEmail());
-			map.put("userPwd", userParam.getUserPwd());
+			map.put("userEmail", loginParam.getUserEmail());
+			map.put("userPwd", loginParam.getUserPwd());
 			userModel =	sDbDao.getMapper(SUserDao.class).sltUser(map);
 			
 		}catch(Exception e){
@@ -83,16 +84,16 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public boolean checkDuplicateEmail(UserParam userParam) throws Exception {
+	public boolean checkDuplicateEmail(LoginParam loginParam) throws Exception {
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			if (userParam.getUserEmail()==null){
+			if (loginParam.getUserEmail()==null){
 				logger.info("LoginServiceImpl::checkDuplicateEmail::Info: email is null");
 				return false;
 			}
 			
-			map.put("userEmail", userParam.getUserEmail());
+			map.put("userEmail", loginParam.getUserEmail());
 			
 			boolean result = sDbDao.getMapper(SUserDao.class).checkEmail(map);
 			

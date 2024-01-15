@@ -1,4 +1,4 @@
-package com.example.project.beans.param;
+package com.example.project.beans.param.common;
 
 public class GroupParam {
 	

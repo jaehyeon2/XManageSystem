@@ -7,9 +7,41 @@
 		FROM
 			user
 		WHERE
-			user_email = #{userEmail} AND
-			user_pwd = #{userPwd}
+		<choose>
+			<when test="userEmail!=null and userPwd!=null">
+				user_email = #{userEmail} AND
+				user_pwd = #{userPwd}
+			</when>
+			<when test="userNo!=null">
+				user_no = #{userNo}
+			</when>
+		</choose>
+		
+		
 	</select>
+	
+	<select id="sltUserList" resultType="com.example.project.model.common.UserModel">
+		SELECT
+			*
+		FROM
+			user
+		WHERE
+			#{searchCate} = #{searchKeyword}
+		LIMIT
+			
+			
+			
+	</select>
+	
+	<select id="cntUserList" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			user
+		WHERE
+			user_nm = #{userNm}
+	</select>
+	
 	<select id="checkEmail" resultType="boolean">
 		SELECT
 			if(count(*) = 0, 1, 0)
