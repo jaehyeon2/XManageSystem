@@ -28,4 +28,28 @@
 			now()
 		)
 	</insert>
+	
+	<update id="udtUser" parameterType="map">
+		UPDATE 
+			user
+		SET
+			userNm=#{userNm},
+			userRank=#{userRank},
+			userPos=#{userPos},
+			userPhone=#{userPhone},
+			groupNo=#{groupNo},
+			groupNm=#{groupNm}
+			update_time = now()
+		WHERE
+			user_no = #{userNo} AND
+			user_email = #{userEmail}
+	</update>
+	
+	<delete id="dltUser" parameterType="map">
+		DELETE from
+			user
+		WHERE
+			user_no = #{userNo} AND
+			user_email = #{userEmail}
+	</delete>
 </mapper>

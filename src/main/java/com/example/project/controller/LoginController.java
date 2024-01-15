@@ -1,8 +1,5 @@
 package com.example.project.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,12 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.project.beans.model.common.UserModel;
-import com.example.project.beans.param.common.UserParam;
+import com.example.project.beans.param.LoginParam;
 import com.example.project.service.LoginService;
 
 import jakarta.validation.Valid;
@@ -40,13 +36,13 @@ public class LoginController {
 	}
 
 	@RequestMapping(value={"/auth"})
-	public String loginAuth(@Valid UserParam userParam, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String loginAuth(@Valid LoginParam loginParam, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("userId");
 		session.removeAttribute("userNm");
 		
-		UserModel userModel = loginService.validateLoginUser(userParam);
+		UserModel userModel = loginService.validateLoginUser(loginParam);
 		
 		if (userModel==null){
 			//additional error code

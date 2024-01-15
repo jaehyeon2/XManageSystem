@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.SearchParam;
-import com.example.project.beans.param.SearchUserParam;
 import com.example.project.beans.param.common.UserParam;
+import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
 import com.example.project.service.UserService;
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService{
 	public List<UserModel> searchUserList(SearchParam searchParam) throws SQLException {
 		List<UserModel> userList = null;
 		if (searchParam.getSearchCate()==null || searchParam.getSearchKey()==null){
-			logger.error("UserServiceImpl:::searchUserList::Error: parameter is null");
+			logger.error("UserServiceImp l:::searchUserList::Error: parameter is null");
 			return null;
 		}
 		
@@ -78,15 +78,51 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUser(UserParam userParam) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateUser(UserParam userParam) throws SQLException {
+		try{
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("userNm", userParam.getUserNm());
+			map.put("userRank", userParam.getUserRank());
+			map.put("userPos", userParam.getUserPos());
+			map.put("userEmail", userParam.getUserEmail());
+			map.put("userPwd", userParam.getUserPwd());
+			map.put("userPhone", userParam.getUserPhone());
+			map.put("groupNo", userParam.getGroupNo());
+			map.put("groupNm", userParam.getGroupNm());
+			
+			int result = mDbDao.getMapper(MUserDao.class).udtUser(map);
+			
+			if (result<1){
+				logger.info("UserServiceImpl::updateUser::Warn: result warn");
+			}
+			
+		}catch(Exception e){
+			logger.error("UserServiceImpl::updateUser::Error: " + e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public int removeUser(UserParam userParam) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean removeUser(UserParam userParam) throws SQLException {
+		try{
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("userNo", userParam.getUserNm());
+			map.put("userEmail", userParam.getUserEmail());
+			
+			int result = mDbDao.getMapper(MUserDao.class).dltUser(map);
+			
+			if (result<1){
+				logger.warn("UserServiceImpl::removeUser::Warn: result warn");
+			}
+			
+		}catch(Exception e){
+			logger.error("UserServiceImpl::updateUser::Error: " + e.getMessage());
+			return false;
+		}
+		return false;
 	}
 	
 

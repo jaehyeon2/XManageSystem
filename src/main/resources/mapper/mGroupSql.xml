@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.example.project.dao.MGroupDao">
+	<insert id="istGroup" resultType="com.example.project.model.common.GroupModel">
+		INSERT INTO group(
+			group_no,
+			group_nm,
+			group_p_no,
+			group_deleted,
+			insert_time,
+			update_time
+		) VALUES (
+			#{groupNo},
+			#{groupNm},
+			#{groupPNo},
+			'0',
+			now(),
+			now()
+		)
+	</insert>
+	
+	<update id="udtGroup" paramterType="map">
+		UPDATE
+			group
+		SET
+			group_nm = #{groupNm},
+			group_p_no = #{groupPNo},
+			update_time = now()
+		WHERE
+			group_no = #{groupNo}
+	
+	</update>
+</mapper>

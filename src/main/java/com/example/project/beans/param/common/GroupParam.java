@@ -5,6 +5,7 @@ public class GroupParam {
 	private String groupId;
 	private String groupNo;
 	private String groupNm;
+	private String groupPNo;
 	
 	public String getGroupId() {
 		return groupId;
@@ -24,5 +25,10 @@ public class GroupParam {
 	public void setGroupNm(String groupNm) {
 		this.groupNm = groupNm;
 	}
-
+	public String getGroupPNo() {
+		return groupPNo;
+	}
+	public void setGroupPNo(String groupPNo) {
+		this.groupPNo = groupPNo;
+	}
 }

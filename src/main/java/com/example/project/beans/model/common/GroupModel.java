@@ -8,7 +8,8 @@ public class GroupModel implements Serializable{
 	
 	private String groupId;
 	private String groupNo;
-	private String groupName;
+	private String groupNm;
+	private String groupPNo;
 	
 	public String getGroupId() {
 		return groupId;
@@ -22,13 +23,16 @@ public class GroupModel implements Serializable{
 	public void setGroupNo(String groupNo) {
 		this.groupNo = groupNo;
 	}
-	public String getGroupName() {
-		return groupName;
+	public String getGroupNm() {
+		return groupNm;
 	}
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+	public void setGroupNm(String groupNm) {
+		this.groupNm = groupNm;
 	}
-	
-	
-	
+	public String getGroupPNo() {
+		return groupPNo;
+	}
+	public void setGroupPNo(String groupPNo) {
+		this.groupPNo = groupPNo;
+	}
 }

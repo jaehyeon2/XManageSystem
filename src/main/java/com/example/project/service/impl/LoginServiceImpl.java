@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.LoginParam;
-import com.example.project.beans.param.common.UserParam;
 import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
 import com.example.project.service.LoginService;
@@ -39,6 +38,7 @@ public class LoginServiceImpl implements LoginService{
 			map.put("userPwd", loginParam.getUserPwd());
 			map.put("userPhone", loginParam.getUserPhone());
 			map.put("groupNo", loginParam.getGroupNo());
+			map.put("groupNm", loginParam.getGroupNm());
 			
 			int result = mDbDao.getMapper(MUserDao.class).istUser(map);
 			
@@ -62,7 +62,7 @@ public class LoginServiceImpl implements LoginService{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			if (loginParam.getUserEmail()==null | loginParam.getUserPwd()==null){
-				logger.info("LoginServiceImpl::validateLoginUser::Info: parameter is null");
+				logger.warn("LoginServiceImpl::validateLoginUser::Warn: parameter is null");
 				return null;
 			}
 			
@@ -89,7 +89,7 @@ public class LoginServiceImpl implements LoginService{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			if (loginParam.getUserEmail()==null){
-				logger.info("LoginServiceImpl::checkDuplicateEmail::Info: email is null");
+				logger.warn("LoginServiceImpl::checkDuplicateEmail::Warn: email is null");
 				return false;
 			}
 			
