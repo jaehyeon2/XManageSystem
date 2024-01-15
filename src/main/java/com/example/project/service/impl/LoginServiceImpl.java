@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.UserParam;
@@ -14,6 +15,7 @@ import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
 import com.example.project.service.LoginService;
 
+@Service
 public class LoginServiceImpl implements LoginService{
 	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -52,7 +54,7 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public boolean validateLoginUser(UserParam userParam) throws Exception{
+	public UserModel validateLoginUser(UserParam userParam) throws Exception{
 		
 		UserModel userModel = null;
 		try{
@@ -60,7 +62,7 @@ public class LoginServiceImpl implements LoginService{
 			
 			if (userParam.getUserEmail()==null | userParam.getUserPwd()==null){
 				logger.info("LoginServiceImpl::validateLoginUser::Info: parameter is null");
-				return false;
+				return null;
 			}
 			
 			map.put("userEmail", userParam.getUserEmail());
@@ -69,15 +71,15 @@ public class LoginServiceImpl implements LoginService{
 			
 		}catch(Exception e){
 			logger.error("LoginServiceImpl::validateLoginUser::Error: " + e.getMessage());
-			return false;
+			return null;
 		}
 		
 		if (userModel==null){
 			logger.info("LoginServiceImpl::validateLoginUser::Info: userModel is null");
-			return false;
+			return null;
 		}
 		
-		return true;
+		return userModel;
 	}
 	
 	@Override

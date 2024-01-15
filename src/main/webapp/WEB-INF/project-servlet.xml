@@ -54,7 +54,7 @@
 	<context:component-scan base-package="com.example.project" />
 
 	<!-- Set the Interceptor - spring 3.0 	-->
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/"/>
@@ -63,6 +63,6 @@
 			<mvc:exclude-mapping path="/static/**"/>
 			<bean class="com.example.project.interceptor.UserInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 
 </beans>
