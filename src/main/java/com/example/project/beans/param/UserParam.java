@@ -1,5 +1,7 @@
 package com.example.project.beans.param;
 
+import jakarta.validation.constraints.Email;
+
 public class UserParam extends GroupParam{
 	
 	private String userId;
@@ -7,6 +9,7 @@ public class UserParam extends GroupParam{
 	private String userNm;
 	private String userRank;
 	private String userPos;
+	@Email
 	private String userEmail;
 	private String userPwd;
 	private String userPhone;

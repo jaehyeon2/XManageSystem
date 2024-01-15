@@ -8,9 +8,9 @@ public class UserModel extends GroupModel implements Serializable{
 	
 	private String userId;
 	private String userNo;
-	private String userName;
+	private String userNm;
 	private String userRank;
-	private String userPosition;
+	private String userPos;
 	private String userEmail;
 	private String userPwd;
 	private String userPhone;
@@ -27,11 +27,11 @@ public class UserModel extends GroupModel implements Serializable{
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUserNm() {
+		return userNm;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
 	}
 	public String getUserRank() {
 		return userRank;
@@ -39,11 +39,11 @@ public class UserModel extends GroupModel implements Serializable{
 	public void setUserRank(String userRank) {
 		this.userRank = userRank;
 	}
-	public String getUserPosition() {
-		return userPosition;
+	public String getUserPos() {
+		return userPos;
 	}
-	public void setUserPosition(String userPosition) {
-		this.userPosition = userPosition;
+	public void setUserPos(String userPos) {
+		this.userPos = userPos;
 	}
 	public String getUserEmail() {
 		return userEmail;
