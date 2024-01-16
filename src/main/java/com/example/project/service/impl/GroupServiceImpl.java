@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.GroupModel;
 import com.example.project.beans.param.common.GroupParam;
+import com.example.project.dao.MGroupDao;
 import com.example.project.dao.SGroupDao;
 import com.example.project.service.GroupService;
 
@@ -70,23 +71,53 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public boolean saveGroup(GroupParam groupParamp) throws SQLException {
+	public boolean saveGroup(GroupParam groupParam) throws SQLException {
 		try{
+			if (groupParam.getGroupNm()==null||groupParam.getGroupPNo()==null){
+				logger.warn("GroupServiceImpl::saveGroup::Warn: parameter is null!");
+				return false;
+			}
+			
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("groupNm", groupParam.getGroupNm());
+			map.put("groupPNo", groupParam.getGroupPNo());
+			
+			int result = mDbDao.getMapper(MGroupDao.class).istGroup(map);
+			
+			if (result<1){
+				logger.info("GroupServiceImpl::saveGroup::Warn: result warn");
+			}
+			
 		}catch (Exception e) {
 			logger.error("GroupServiceImpl::saveGroup::Error: " + e.getMessage());
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean updateGroup(GroupParam groupParam) throws SQLException {
 		try{
+			if (groupParam.getGroupNm()==null||groupParam.getGroupPNo()==null){
+				logger.warn("GroupServiceImpl::updateGroup::Warn: parameter is null!");
+				return false;
+			}
+			
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("groupNo", groupParam.getGroupNo());
+			map.put("groupNm", groupParam.getGroupNm());
+			map.put("groupPNo", groupParam.getGroupPNo());
+			
+			int result = mDbDao.getMapper(MGroupDao.class).udtGroup(map);
+			
+			if (result<1){
+				logger.info("GroupServiceImpl::updateGroup::Warn: result warn");
+			}
 		}catch(Exception e){
 			logger.error("GroupServiceImpl::updateGroup::Error: " + e.getMessage());
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	
