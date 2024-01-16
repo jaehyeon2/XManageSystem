@@ -5,8 +5,8 @@ import java.util.Map;
 
 public interface MGroupDao {
 
-	public boolean istGroup(Map<String, Object> map) throws SQLException;
+	public int istGroup(Map<String, Object> map) throws SQLException;
 	
-	public boolean udtGroup(Map<String, Object> map) throws SQLException;
+	public int udtGroup(Map<String, Object> map) throws SQLException;
 	
 }
