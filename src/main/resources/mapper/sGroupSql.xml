@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.example.project.dao.SGroupDAo">
+	<select id="sltGroup" resultType="com.example.project.beans.model.common.GroupModel">
+		SELECT
+			*
+		FROM
+			group
+		WHERE
+			group_no=#{groupNo}
+	</select>
+	
+	<select id="sltGroupSeq" resultType="com.example.project.beans.model.common.GroupModel">
+		SELECT
+			*
+		FROM
+			group
+		WHERE
+			group_p_no=#{groupPNo}
+	</select>
+	
+</mapper>
