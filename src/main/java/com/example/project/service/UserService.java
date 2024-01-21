@@ -15,6 +15,4 @@ public interface UserService {
 	
 	public boolean updateUser(UserParam userParam) throws SQLException;
 	
-	public boolean removeUser(UserParam userParam) throws SQLException;
-	
 }

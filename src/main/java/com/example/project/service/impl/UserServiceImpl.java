@@ -104,26 +104,4 @@ public class UserServiceImpl implements UserService{
 		return true;
 	}
 
-	@Override
-	public boolean removeUser(UserParam userParam) throws SQLException {
-		try{
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			map.put("userNo", userParam.getUserNm());
-			map.put("userEmail", userParam.getUserEmail());
-			
-			int result = mDbDao.getMapper(MUserDao.class).dltUser(map);
-			
-			if (result<1){
-				logger.warn("UserServiceImpl::removeUser::Warn: result warn");
-			}
-			
-		}catch(Exception e){
-			logger.error("UserServiceImpl::updateUser::Error: " + e.getMessage());
-			return false;
-		}
-		return false;
-	}
-	
-
 }
