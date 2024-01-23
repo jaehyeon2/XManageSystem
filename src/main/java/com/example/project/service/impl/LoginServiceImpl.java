@@ -77,6 +77,7 @@ public class LoginServiceImpl implements LoginService{
 		
 		if (userModel==null){
 			logger.info("LoginServiceImpl::validateLoginUser::Info: userModel is null");
+			// ID or PW are not matched
 			return null;
 		}
 		
