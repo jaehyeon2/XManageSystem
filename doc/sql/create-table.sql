@@ -1,7 +1,7 @@
 create table x_group(
 	id INTEGER(10) NOT NULL AUTO_INCREMENT,
   	group_nm VARCHAR(100) NOT NULL,
-  	group_p_no INTEGER(10),
+  	group_p_id INTEGER(10),
   	group_deleted char(1),
   	insert_time timestamp,
   	update_time timestamp,
@@ -17,7 +17,7 @@ create table x_user(
 	user_email VARCHAR(200),
 	user_pwd VARCHAR(200),
 	user_phone VARCHAR(200),
-	group_no INTEGER(10),
+	group_id INTEGER(10),
 	group_nm VARCHAR(100),
 	user_deleted VHAR(1),
 	insert_time timestamp,
