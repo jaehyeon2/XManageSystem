@@ -8,15 +8,16 @@
 		FROM
 			x_user
 		WHERE
-		<choose>
-			<when test="userEmail!=null and userPwd!=null">
-				user_email = #{userEmail} AND
-				user_pwd = #{userPwd}
-			</when>
-			<when test="userNo!=null">
-				user_no = #{userNo}
-			</when>
-		</choose>
+			<choose>
+				<when test="userEmail!=null and userPwd!=null">
+					user_email = #{userEmail} AND
+					user_pwd = #{userPwd} AND
+				</when>
+				<when test="userNo!=null">
+					user_no = #{userNo} AND
+				</when>
+			</choose>
+			user_delete='0'
 		
 	</select>
 	
@@ -24,21 +25,29 @@
 		SELECT
 			*
 		FROM
-			user
+			x_user
 		WHERE
-			#{searchCate} = #{searchKeyword}
-		<!-- LIMIT -->
+			<if test="searchCate!=null and searchKeyword!=null">
+				#{searchCate} = #{searchKeyword} AND
+			</if>
+			user_delete='0'
+		LIMIT
+			(#{nowPage}-1)*#{rowPage}, #{rowPage}
 			
 			
 	</select>
 	
-	<select id="cntUserList" resultType="java.lang.Integer">
+	<select id="cntUser" resultType="java.lang.Integer">
 		SELECT
 			count(*)
 		FROM
 			x_user
 		WHERE
-			user_nm = #{userNm}
+			<if test="searchCate!=null and searchKeyword!=null">
+				#{searchCate} = #{searchKeyword} AND
+			</if>
+			user_delete="0"
+			
 	</select>
 	
 	<select id="checkEmail" resultType="boolean">

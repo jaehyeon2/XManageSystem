@@ -12,8 +12,4 @@ public interface GroupService {
 	
 	public List<GroupModel> searchGroupSeq(GroupParam groupParam) throws SQLException;
 	
-	public boolean saveGroup(GroupParam groupParam) throws SQLException;
-	
-	public boolean updateGroup(GroupParam groupParam) throws SQLException;
-	
 }

@@ -13,6 +13,8 @@ public interface UserService {
 	
 	public List<UserModel> searchUserList(SearchParam searchParam) throws SQLException;
 	
+	public int searchUserCount(SearchParam searchParam) throws SQLException;
+	
 	public boolean updateUser(UserParam userParam) throws SQLException;
 	
 }

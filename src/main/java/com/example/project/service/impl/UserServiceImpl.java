@@ -54,17 +54,19 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<UserModel> searchUserList(SearchParam searchParam) throws SQLException {
 		List<UserModel> userList = null;
-		if (searchParam.getSearchCate()==null || searchParam.getSearchKey()==null){
-			logger.error("UserServiceImp l:::searchUserList::Error: parameter is null");
+		if ((searchParam.getSearchCate()==null) != (searchParam.getSearchKey()==null)){
+			logger.error("UserServiceImpl::searchUserList::Error: search parameter error");
+			return null;
+		}
+		if (searchParam.getNowPage()==null || searchParam.getRowPage()==null){
+			logger.error("UserServiceImpl::searchUserList::Error: page parameter is null");
 			return null;
 		}
 		
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			int nowPage = searchParam.getNowPage();
-			int start = (nowPage-1)*searchParam.getRowPage();
-			map.put("startNo", start);
-			map.put("row", searchParam.getRowPage());
+			map.put("nowPage", searchParam.getNowPage());
+			map.put("rowPage", searchParam.getRowPage());
 			map.put("searchCate", searchParam.getSearchCate());
 			map.put("searchKey", searchParam.getSearchKey());
 			
@@ -75,6 +77,28 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		return userList;
+	}
+	
+	@Override
+	public int searchUserCount(SearchParam searchParam) throws SQLException{
+		int result = 0;
+		if ((searchParam.getSearchCate()==null) != (searchParam.getSearchKey()==null)){
+			logger.error("UserServiceImpl::searchUserCount::Error: search parameter error");
+			return 0;
+		}
+		try{
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("searchCate", searchParam.getSearchCate());
+			map.put("searchKey", searchParam.getSearchKey());
+			
+			result = sDbDao.getMapper(SUserDao.class).cntUser(map);
+			
+		}catch(Exception e){
+			logger.error("UserServiceImpl::searchUserCount::Error: " + e.getMessage());
+			return 0;
+		}
+		
+		return result;
 	}
 
 	@Override

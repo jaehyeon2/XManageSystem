@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.project.beans.param.common.GroupParam;
 import com.example.project.beans.param.common.UserParam;
 import com.example.project.dao.MAdminDao;
+import com.example.project.dao.MGroupDao;
 import com.example.project.dao.MUserDao;
 import com.example.project.service.AdminService;
 
@@ -73,6 +75,56 @@ public class AdminServiceImpl implements AdminService{
 			return false;
 		}
 		
+		return true;
+	}
+	
+	@Override
+	public boolean saveGroup(GroupParam groupParam) throws SQLException {
+		try{
+			if (groupParam.getGroupNm()==null||groupParam.getGroupPNo()==null){
+				logger.warn("GroupServiceImpl::saveGroup::Warn: parameter is null!");
+				return false;
+			}
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("groupNm", groupParam.getGroupNm());
+			map.put("groupPNo", groupParam.getGroupPNo());
+			
+			int result = mDbDao.getMapper(MGroupDao.class).istGroup(map);
+			
+			if (result<1){
+				logger.info("GroupServiceImpl::saveGroup::Warn: result warn");
+			}
+			
+		}catch (Exception e) {
+			logger.error("GroupServiceImpl::saveGroup::Error: " + e.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateGroup(GroupParam groupParam) throws SQLException {
+		try{
+			if (groupParam.getGroupNm()==null||groupParam.getGroupPNo()==null){
+				logger.warn("GroupServiceImpl::updateGroup::Warn: parameter is null!");
+				return false;
+			}
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("groupNo", groupParam.getGroupNo());
+			map.put("groupNm", groupParam.getGroupNm());
+			map.put("groupPNo", groupParam.getGroupPNo());
+			
+			int result = mDbDao.getMapper(MGroupDao.class).udtGroup(map);
+			
+			if (result<1){
+				logger.info("GroupServiceImpl::updateGroup::Warn: result warn");
+			}
+		}catch(Exception e){
+			logger.error("GroupServiceImpl::updateGroup::Error: " + e.getMessage());
+			return false;
+		}
 		return true;
 	}
 
