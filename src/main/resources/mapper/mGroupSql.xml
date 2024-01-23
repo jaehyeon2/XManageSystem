@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mapper namespace="com.example.project.dao.MGroupDao">
+
 	<insert id="istGroup" resultType="com.example.project.model.common.GroupModel">
-		INSERT INTO group(
+		INSERT INTO x_group(
 			group_nm,
-			group_p_no,
+			group_p_id,
 			group_deleted,
 			insert_time,
 			update_time
 		) VALUES (
 			#{groupNm},
-			#{groupPNo},
+			#{groupPId},
 			'0',
 			now(),
 			now()
 		)
 	</insert>
 	
-	<update id="udtGroup" paramterType="map">
+	<update id="udtGroup" parameterType="map">
 		UPDATE
-			group
+			x_group
 		SET
 			group_nm = #{groupNm},
-			group_p_no = #{groupPNo},
+			group_p_id = #{groupPId},
 			update_time = now()
 		WHERE
-			group_no = #{groupNo}
-	
+			group_id = #{groupId}
 	</update>
+	
+	<delete id="dltGroup" parameterType="map">
+		DELETE from
+			x_group
+		WHERE
+			group_id=#{groupId}
+	</delete>
+	
 </mapper>

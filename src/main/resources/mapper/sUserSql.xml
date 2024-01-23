@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mapper namespace="com.example.project.dao.SUserDao">
+
 	<select id="sltUser" resultType="com.example.project.model.common.UserModel">
 		SELECT
 			*
 		FROM
-			user
+			x_user
 		WHERE
 		<choose>
 			<when test="userEmail!=null and userPwd!=null">
@@ -17,7 +18,6 @@
 			</when>
 		</choose>
 		
-		
 	</select>
 	
 	<select id="sltUserList" resultType="com.example.project.model.common.UserModel">
@@ -27,8 +27,7 @@
 			user
 		WHERE
 			#{searchCate} = #{searchKeyword}
-		LIMIT
-			
+		<!-- LIMIT -->
 			
 			
 	</select>
@@ -37,7 +36,7 @@
 		SELECT
 			count(*)
 		FROM
-			user
+			x_user
 		WHERE
 			user_nm = #{userNm}
 	</select>
@@ -46,8 +45,9 @@
 		SELECT
 			if(count(*) = 0, 1, 0)
   		FROM
-  			user
+  			x_user
 		WHERE
 			user_email = #{userEmail}
 	</select>
+	
 </mapper>

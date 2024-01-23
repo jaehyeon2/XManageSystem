@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mapper namespace="com.example.project.dao.MUserDao">
+
 	<insert id="istUser">
-		INSERT INTO user (
+		INSERT INTO x_user (
 			user_no,
 			user_nm,
 			user_rank,
@@ -10,7 +11,8 @@
 			user_email,
 			user_pwd,
 			user_phone,
-			group_no,
+			group_id,
+			group_nm,
 			user_deleted,
 			insert_time,
 			update_time
@@ -23,6 +25,7 @@
 			#{userPwd},
 			#{userPhone},
 			#{groupNo},
+			#{groupNm},
 			'0',
 			now(),
 			now()
@@ -31,14 +34,14 @@
 	
 	<update id="udtUser" parameterType="map">
 		UPDATE 
-			user
+			x_user
 		SET
-			userNm=#{userNm},
-			userRank=#{userRank},
-			userPos=#{userPos},
-			userPhone=#{userPhone},
-			groupNo=#{groupNo},
-			groupNm=#{groupNm}
+			user_nm=#{userNm},
+			user_rank=#{userRank},
+			user_pos=#{userPos},
+			user_phone=#{userPhone},
+			group_id=#{groupId},
+			group_nm=#{groupNm}
 			update_time = now()
 		WHERE
 			user_no = #{userNo} AND
@@ -47,9 +50,10 @@
 	
 	<delete id="dltUser" parameterType="map">
 		DELETE from
-			user
+			x_user
 		WHERE
 			user_no = #{userNo} AND
 			user_email = #{userEmail}
 	</delete>
+	
 </mapper>
