@@ -29,8 +29,10 @@ public class LoginController {
 	@Autowired
 	private int MAX_INTERVAL;
 	
-	@RequestMapping(value={"/", "", "/index"}, method=RequestMethod.GET)
-	public String loginIndex() throws Exception{
+	@RequestMapping(value={"/", "", "/index"})
+	public String loginIndex(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		
 		
 		return "login/index";
 	}
@@ -45,6 +47,7 @@ public class LoginController {
 		UserModel userModel = loginService.validateLoginUser(loginParam);
 		
 		if (userModel==null){
+			logger.info("LoginController::loginAuth::Info: Login Failed");
 			//additional error code
 			return "login/index";
 		}

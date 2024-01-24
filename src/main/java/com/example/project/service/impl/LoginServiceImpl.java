@@ -15,6 +15,8 @@ import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
 import com.example.project.service.LoginService;
 
+import jakarta.validation.Valid;
+
 @Service
 public class LoginServiceImpl implements LoginService{
 	
@@ -61,11 +63,10 @@ public class LoginServiceImpl implements LoginService{
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			if (loginParam.getUserEmail()==null | loginParam.getUserPwd()==null){
+			if (loginParam.getUserEmail()==null || loginParam.getUserPwd()==null){
 				logger.warn("LoginServiceImpl::validateLoginUser::Warn: parameter is null");
 				return null;
 			}
-			
 			map.put("userEmail", loginParam.getUserEmail());
 			map.put("userPwd", loginParam.getUserPwd());
 			userModel =	sDbDao.getMapper(SUserDao.class).sltUser(map);

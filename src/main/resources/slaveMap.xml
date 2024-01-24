@@ -14,7 +14,7 @@
  	</settings>
 
 	<mappers>
-		<!-- <mapper resource="mapper/sLoginSql.xml" /> -->
+		<mapper resource="mapper/sUserSql.xml" />
 	</mappers>
 
 </configuration>

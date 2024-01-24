@@ -23,6 +23,7 @@
 	<import resource="classpath:spring/mariadb.xml"/>
 	<import resource="classpath:spring/service.xml"/>
 	<import resource="classpath:spring/dao.xml"/>
+	<import resource="classpath:spring/sessiondb.xml"/>
 	
 	<!-- Users -->
 	
