@@ -16,6 +16,7 @@
 
 	<!-- Set the base package -->
 	<context:component-scan base-package="com.example.project" />
+	
 
 	<!-- Include the core spring -->
 	

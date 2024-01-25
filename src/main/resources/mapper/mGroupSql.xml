@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.example.project.dao.MGroupDao">
 
-	<insert id="istGroup" resultType="com.example.project.model.common.GroupModel">
+	<insert id="istGroup">
 		INSERT INTO x_group(
 			group_nm,
 			group_p_id,
