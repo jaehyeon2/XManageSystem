@@ -2,6 +2,6 @@
 <#import "/spring.ftl" as spring/>
 <@layout.myLayout>
 
-login
+admin page
 
 </@layout.myLayout>
