@@ -20,7 +20,7 @@ public class IndexController {
 		
 		if (session.getAttribute("userNm")!=null){
 			model.addAttribute("userNm", session.getAttribute("userNm").toString());
-			logger.info("userNm: " + session.getAttribute("userNm"));
+			logger.info("IndexController::index::userNm: " + session.getAttribute("userNm"));
 		}
 		
 		return "index";

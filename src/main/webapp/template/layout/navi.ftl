@@ -7,7 +7,9 @@
 		<li>
 			<a href="/admin">admin</a>
 		</li>
-		
+		<li>
+			<a href ="/login">login</a>
+		</li>
 	</ul>
 	
 </div>

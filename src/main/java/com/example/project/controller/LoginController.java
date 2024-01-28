@@ -35,7 +35,8 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		if (session.getAttribute("userNm")!=null){
-			model.addAttribute("userNm", session.getAttribute("userNm"));
+			logger.info("LoginController::loginIndex::userNm: " + session.getAttribute("userNm"));
+			return "redirect:/";
 		}
 		
 		
