@@ -1,4 +1,4 @@
-create table xm_system.x_group(
+create table IF NOT EXISTS xm_system.x_group(
 	id INTEGER(10) NOT NULL AUTO_INCREMENT,
   	group_nm VARCHAR(100) NOT NULL,
   	group_p_id INTEGER(10),
@@ -8,7 +8,7 @@ create table xm_system.x_group(
   	PRIMARY KEY(id)
 ) ENGINE=innoDB CHARSET=utf8;
 
-create table xm_system.x_user(
+create table IF NOT EXISTS xm_system.x_user(
 	id INTEGER(10) NOT NULL AUTO_INCREMENT,
 	user_no VARCHAR(100),
 	user_nm VARCHAR(100),
@@ -20,6 +20,17 @@ create table xm_system.x_user(
 	group_id INTEGER(10),
 	group_nm VARCHAR(100),
 	user_deleted CHAR(1),
+	insert_time timestamp,
+	update_time timestamp,
+  	PRIMARY KEY(id)
+) ENGINE=innoDB CHARSET=utf8;
+
+create table IF NOT EXISTS xm_system.x_admin(
+	id INTEGER(10) NOT NULL AUTO_INCREMENT,
+	user_no VARCHAR(100),
+	admin_nm VARCHAR(100),
+	admin_email VARCHAR(200),
+	admin_deleted CHAR(1),
 	insert_time timestamp,
 	update_time timestamp,
   	PRIMARY KEY(id)
