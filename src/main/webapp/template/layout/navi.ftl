@@ -7,9 +7,13 @@
 		<li>
 			<a href="/admin">admin</a>
 		</li>
-		<li>
-			<a href ="/login">login</a>
-		</li>
+		<#if userNm??>
+			${userNm}님
+		<#else>
+			<li>
+				<a href="/login">login</a>
+			</li>
+		</#if>
 	</ul>
 	
 </div>
