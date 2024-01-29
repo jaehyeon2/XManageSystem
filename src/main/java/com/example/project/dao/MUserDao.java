@@ -9,6 +9,8 @@ public interface MUserDao {
 	
 	public int udtUser(Map<String, Object> map) throws SQLException;
 	
+	public int udtUserAuth(Map<String, Object> map) throws SQLException;
+	
 	public int dltUser(Map<String, Object> map) throws SQLException;
 
 }

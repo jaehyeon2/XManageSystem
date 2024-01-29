@@ -14,6 +14,7 @@ create table IF NOT EXISTS xm_system.x_user(
 	user_nm VARCHAR(100),
 	user_rank VARCHAR(100),
 	user_pos VARCHAR(100),
+	user_auth CHAR(1),
 	user_email VARCHAR(200),
 	user_pwd VARCHAR(200),
 	user_phone VARCHAR(200),

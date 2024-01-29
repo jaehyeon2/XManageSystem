@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.beans.param.common.GroupParam;
 import com.example.project.beans.param.common.UserParam;
-import com.example.project.dao.MAdminDao;
 import com.example.project.dao.MGroupDao;
 import com.example.project.dao.MUserDao;
 import com.example.project.service.AdminService;
@@ -52,6 +51,26 @@ public class AdminServiceImpl implements AdminService{
 			}
 		}catch(Exception e){
 			logger.error("AdminServiceImpl::saveUser::Error: " + e.getMessage());
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public boolean updateUserAuth(UserParam userParam) throws SQLException{
+		try{
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userId", userParam.getUserId());
+			
+			int result = mDbDao.getMapper(MUserDao.class).udtUserAuth(map);
+			
+			if (result<1){
+				logger.info("AdminServiceImpl::updateUserAuth::Info: NoInsert");
+				return false;
+			}
+		}catch (Exception e) {
+			logger.error("AdminServiceImpl::updateUserAuth::Error: " + e.getMessage());
 			return false;
 		}
 		

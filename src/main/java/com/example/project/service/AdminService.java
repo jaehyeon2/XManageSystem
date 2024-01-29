@@ -9,6 +9,8 @@ public interface AdminService {
 	
 	public boolean saveUser(UserParam userParam) throws SQLException;
 	
+	public boolean updateUserAuth(UserParam userParam) throws SQLException;
+	
 	public boolean removeUser(UserParam userParam) throws SQLException;
 
 	public boolean saveGroup(GroupParam groupParam) throws SQLException;
