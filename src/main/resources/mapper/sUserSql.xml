@@ -19,6 +19,9 @@
 				<when test="userNo!=null">
 					user_no = #{userNo} AND
 				</when>
+				<when test="userAuth!=null">
+					user_auth = #{userAuth} AND
+				</when>
 			</choose>
 			user_delete='0'
 		

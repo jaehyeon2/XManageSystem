@@ -13,6 +13,7 @@ public class UserParam extends GroupParam{
 	private String userEmail;
 	private String userPwd;
 	private String userPhone;
+	private String userAuth;
 	
 	public String getUserId() {
 		return userId;
@@ -61,6 +62,12 @@ public class UserParam extends GroupParam{
 	}
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
+	}
+	public String getUserAuth() {
+		return userAuth;
+	}
+	public void setUserAuth(String userAuth) {
+		this.userAuth = userAuth;
 	}
 	
 }

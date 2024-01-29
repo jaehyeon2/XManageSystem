@@ -14,6 +14,7 @@ public class UserModel extends GroupModel implements Serializable{
 	private String userEmail;
 	private String userPwd;
 	private String userPhone;
+	private String userAuth;
 	
 	public String getUserId() {
 		return userId;
@@ -63,6 +64,11 @@ public class UserModel extends GroupModel implements Serializable{
 	public void setUserPhone(String userPhone){
 		this.userPhone = userPhone;
 	}
-	
+	public String getUserAuth() {
+		return userAuth;
+	}
+	public void setUserAuth(String userAuth) {
+		this.userAuth = userAuth;
+	}
 	
 }

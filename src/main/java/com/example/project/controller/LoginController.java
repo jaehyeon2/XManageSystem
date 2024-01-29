@@ -64,6 +64,7 @@ public class LoginController {
 		logger.info("LoginController::loginAuth::NewSessionID: "+session.getId());
 		session.setAttribute("userId", userModel.getUserId());
 		session.setAttribute("userNm", userModel.getUserNm());
+		session.setAttribute("userAuth", userModel.getUserAuth());
 		session.setMaxInactiveInterval(MAX_INTERVAL);
 		
 		return "redirect:/";
