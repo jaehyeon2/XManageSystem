@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.project.beans.model.common.UserModel;
-import com.example.project.beans.param.SearchParam;
+import com.example.project.beans.param.SearchUserParam;
 import com.example.project.beans.param.common.UserParam;
 import com.example.project.dao.MUserDao;
 import com.example.project.dao.SUserDao;
@@ -52,23 +52,23 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserModel> searchUserList(SearchParam searchParam) throws SQLException {
+	public List<UserModel> searchUserList(SearchUserParam searchUserParam) throws SQLException {
 		List<UserModel> userList = null;
-		if ((searchParam.getSearchCate()==null) != (searchParam.getSearchKey()==null)){
+		if ((searchUserParam.getSearchUserCate()==null) != (searchUserParam.getSearchUserKey()==null)){
 			logger.error("UserServiceImpl::searchUserList::Error: search parameter error");
 			return null;
 		}
-		if (searchParam.getNowPage()==null || searchParam.getRowPage()==null){
+		if (searchUserParam.getNowPage()==null || searchUserParam.getRowPage()==null){
 			logger.error("UserServiceImpl::searchUserList::Error: page parameter is null");
 			return null;
 		}
 		
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("nowPage", searchParam.getNowPage());
-			map.put("rowPage", searchParam.getRowPage());
-			map.put("searchCate", searchParam.getSearchCate());
-			map.put("searchKey", searchParam.getSearchKey());
+			map.put("nowPage", searchUserParam.getNowPage());
+			map.put("rowPage", searchUserParam.getRowPage());
+			map.put("searchCate", searchUserParam.getSearchUserCate());
+			map.put("searchKey", searchUserParam.getSearchUserKey());
 			
 			userList =sDbDao.getMapper(SUserDao.class).sltUserList(map); 
 		}catch(Exception e){
@@ -80,16 +80,16 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public int searchUserCount(SearchParam searchParam) throws SQLException{
+	public int searchUserCount(SearchUserParam searchUserParam) throws SQLException{
 		int result = 0;
-		if ((searchParam.getSearchCate()==null) != (searchParam.getSearchKey()==null)){
+		if ((searchUserParam.getSearchUserCate()==null) != (searchUserParam.getSearchUserKey()==null)){
 			logger.error("UserServiceImpl::searchUserCount::Error: search parameter error");
 			return 0;
 		}
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("searchCate", searchParam.getSearchCate());
-			map.put("searchKey", searchParam.getSearchKey());
+			map.put("searchCate", searchUserParam.getSearchUserCate());
+			map.put("searchKey", searchUserParam.getSearchUserKey());
 			
 			result = sDbDao.getMapper(SUserDao.class).cntUser(map);
 			

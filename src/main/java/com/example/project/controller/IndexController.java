@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -24,6 +25,16 @@ public class IndexController {
 		}
 		
 		return "index";
+	}
+	
+	@RequestMapping({"board"})
+	public String board(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		return "board/index";
+	}
+	
+	@RequestMapping({"user"})
+	public String user(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		return "user/index";
 	}
 	
 }

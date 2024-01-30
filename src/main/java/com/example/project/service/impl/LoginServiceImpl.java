@@ -1,5 +1,6 @@
 package com.example.project.service.impl;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class LoginServiceImpl implements LoginService{
 	private SqlSession sDbDao;
 	
 	@Override
-	public boolean saveUser(LoginParam loginParam) throws Exception{
+	public boolean saveUser(LoginParam loginParam) throws SQLException{
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("userNo", loginParam.getUserNo());
@@ -57,7 +58,7 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public UserModel validateLoginUser(LoginParam loginParam) throws Exception{
+	public UserModel validateLoginUser(LoginParam loginParam) throws SQLException{
 		
 		UserModel userModel = null;
 		try{
@@ -86,7 +87,7 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public boolean checkDuplicateEmail(LoginParam loginParam) throws Exception {
+	public boolean checkDuplicateEmail(LoginParam loginParam) throws SQLException {
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			

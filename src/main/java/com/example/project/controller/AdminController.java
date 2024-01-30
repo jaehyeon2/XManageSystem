@@ -11,7 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.project.beans.param.SearchParam;
+import com.example.project.beans.param.SearchUserParam;
 import com.example.project.service.AdminService;
 import com.example.project.service.GroupService;
 import com.example.project.service.UserService;
@@ -40,9 +40,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value={"/manageUser"}, method=RequestMethod.GET)
-	public String manageUser(@Valid SearchParam searchParam, HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
+	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
 		
-		map.put("userList", userService.searchUserList(searchParam));
+		map.put("userList", userService.searchUserList(searchUserParam));
 		
 		return "admin/manageUser";
 	}

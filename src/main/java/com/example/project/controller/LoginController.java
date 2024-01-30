@@ -75,6 +75,7 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("userId");
 		session.removeAttribute("userNm");
+		session.removeAttribute("userAuth");
 		session.invalidate();
 		
 		return "redirect:/";
