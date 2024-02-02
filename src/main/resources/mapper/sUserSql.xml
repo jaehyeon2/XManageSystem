@@ -11,6 +11,9 @@
 		FROM
 			x_user
 		WHERE
+			<if test="groupId!=null">
+				group_id = #{groupId} AND
+			</if>
 			<choose>
 				<when test="userEmail!=null and userPwd!=null">
 					user_email = #{userEmail} AND
@@ -33,13 +36,15 @@
 		FROM
 			x_user
 		WHERE
+			group_id = #{groupId} AND
 			<if test="searchCate!=null and searchKeyword!=null">
 				#{searchCate} = #{searchKeyword} AND
 			</if>
 			user_delete='0'
+		<if test="nowPage!=null and rowPage!=null"> 
 		LIMIT
 			(#{nowPage}-1)*#{rowPage}, #{rowPage}
-			
+		</if>
 			
 	</select>
 	

@@ -7,6 +7,13 @@
 		<li>
 			<a href="/admin">admin</a>
 		</li>
+		<li>
+			<a href="/user">user</a>
+		</li>
+		
+		<li>
+			<a href="/board">board</a>
+		</li>
 		<#if userNm??>
 			${userNm}님
 		<#else>

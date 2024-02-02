@@ -22,6 +22,8 @@ public class IndexController {
 		if (session.getAttribute("userNm")!=null){
 			model.addAttribute("userNm", session.getAttribute("userNm").toString());
 			logger.info("IndexController::index::userNm: " + session.getAttribute("userNm"));
+			logger.info("IndexController::index::groupId: " + session.getAttribute("groupId"));
+			
 		}
 		
 		return "index";
@@ -32,9 +34,5 @@ public class IndexController {
 		return "board/index";
 	}
 	
-	@RequestMapping({"user"})
-	public String user(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
-		return "user/index";
-	}
 	
 }

@@ -14,6 +14,8 @@ public class UserParam extends GroupParam{
 	private String userPwd;
 	private String userPhone;
 	private String userAuth;
+	private String searchUserCate;
+	private String searchUserKey;
 	
 	public String getUserId() {
 		return userId;
@@ -69,5 +71,21 @@ public class UserParam extends GroupParam{
 	public void setUserAuth(String userAuth) {
 		this.userAuth = userAuth;
 	}
+	public String getSearchUserCate() {
+		return searchUserCate;
+	}
+	public void setSearchUserCate(String searchUserCate) {
+		this.searchUserCate = searchUserCate;
+	}
+	public String getSearchUserKey() {
+		return searchUserKey;
+	}
+	public void setSearchUserKey(String searchUserKey) {
+		this.searchUserKey = searchUserKey;
+	}
+	public void setUserPos(String userPos) {
+		this.userPos = userPos;
+	}
+	
 	
 }

@@ -1,6 +1,6 @@
 package com.example.project.beans.param.common;
 
-public class PagingParam {
+public class PagingParam extends UserParam{
 	
 	private String allCount;
 	private String rowPage;

@@ -35,14 +35,14 @@ public class AdminController {
 	
 	@RequestMapping(value={"/index", "/dashboard", "", "/"}, method=RequestMethod.GET)
 	public String adminIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
-		
+		logger.info("test admin");
 		return "admin/index";
 	}
 	
 	@RequestMapping(value={"/manageUser"}, method=RequestMethod.GET)
 	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
 		
-		map.put("userList", userService.searchUserList(searchUserParam));
+		map.put("userList", userService.sltUserList(searchUserParam));
 		
 		return "admin/manageUser";
 	}

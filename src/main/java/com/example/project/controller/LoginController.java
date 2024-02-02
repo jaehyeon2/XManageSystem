@@ -49,6 +49,8 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("userId");
 		session.removeAttribute("userNm");
+		session.removeAttribute("userAuth");
+		session.removeAttribute("groupId");
 		
 		UserModel userModel = loginService.validateLoginUser(loginParam);
 		
@@ -65,6 +67,7 @@ public class LoginController {
 		session.setAttribute("userId", userModel.getUserId());
 		session.setAttribute("userNm", userModel.getUserNm());
 		session.setAttribute("userAuth", userModel.getUserAuth());
+		session.setAttribute("groupId", userModel.getGroupId());
 		session.setMaxInactiveInterval(MAX_INTERVAL);
 		
 		return "redirect:/";

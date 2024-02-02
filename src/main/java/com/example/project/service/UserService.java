@@ -9,11 +9,11 @@ import com.example.project.beans.param.common.UserParam;
 
 public interface UserService {
 	
-	public UserModel searchUser(UserParam userParam) throws SQLException;
+	public UserModel sltUser(UserParam userParam) throws SQLException;
 	
-	public List<UserModel> searchUserList(SearchUserParam searchUserParam) throws SQLException;
+	public List<UserModel> sltUserList(UserParam userParam) throws SQLException;
 	
-	public int searchUserCount(SearchUserParam searchUserParam) throws SQLException;
+	public int sltUserCount(UserParam userParam) throws SQLException;
 	
 	public boolean updateUser(UserParam userParam) throws SQLException;
 	

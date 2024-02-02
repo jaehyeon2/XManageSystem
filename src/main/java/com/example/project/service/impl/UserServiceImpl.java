@@ -30,9 +30,10 @@ public class UserServiceImpl implements UserService{
 	private SqlSession sDbDao;
 
 	@Override
-	public UserModel searchUser(UserParam userParam) throws SQLException {
+	public UserModel sltUser(UserParam userParam) throws SQLException {
 		
 		UserModel userModel = null;
+		logger.info("test");
 		if (userParam.getUserNo()==null){
 			logger.error("UserServiceImpl::searchUser::Error: parameter error! userNo is not exist!");
 			return null;
@@ -40,7 +41,9 @@ public class UserServiceImpl implements UserService{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userNo", userParam.getUserNo());
-		
+		if (userParam.getGroupId()!=null){
+			map.put("userNo", userParam.getGroupId());
+		}
 		userModel = sDbDao.getMapper(SUserDao.class).sltUser(map);
 		
 		if (userModel==null){
@@ -52,21 +55,22 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserModel> searchUserList(SearchUserParam searchUserParam) throws SQLException {
+	public List<UserModel> sltUserList(UserParam searchUserParam) throws SQLException {
 		List<UserModel> userList = null;
 		if ((searchUserParam.getSearchUserCate()==null) != (searchUserParam.getSearchUserKey()==null)){
 			logger.error("UserServiceImpl::searchUserList::Error: search parameter error");
 			return null;
 		}
-		if (searchUserParam.getNowPage()==null || searchUserParam.getRowPage()==null){
-			logger.error("UserServiceImpl::searchUserList::Error: page parameter is null");
-			return null;
-		}
+//		if (searchUserParam.getNowPage()==null || searchUserParam.getRowPage()==null){
+//			logger.error("UserServiceImpl::searchUserList::Error: page parameter is null");
+//			return null;
+//		}
 		
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("nowPage", searchUserParam.getNowPage());
-			map.put("rowPage", searchUserParam.getRowPage());
+//			map.put("nowPage", searchUserParam.getNowPage());
+//			map.put("rowPage", searchUserParam.getRowPage());
+			map.put("groupId", searchUserParam.getGroupId());
 			map.put("searchCate", searchUserParam.getSearchUserCate());
 			map.put("searchKey", searchUserParam.getSearchUserKey());
 			
@@ -80,7 +84,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public int searchUserCount(SearchUserParam searchUserParam) throws SQLException{
+	public int sltUserCount(UserParam searchUserParam) throws SQLException{
 		int result = 0;
 		if ((searchUserParam.getSearchUserCate()==null) != (searchUserParam.getSearchUserKey()==null)){
 			logger.error("UserServiceImpl::searchUserCount::Error: search parameter error");
