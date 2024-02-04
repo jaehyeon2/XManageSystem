@@ -1,5 +1,7 @@
 package com.example.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +13,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.project.beans.model.common.GroupModel;
+import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.SearchUserParam;
+import com.example.project.beans.param.common.GroupParam;
 import com.example.project.service.AdminService;
 import com.example.project.service.GroupService;
 import com.example.project.service.UserService;
@@ -35,16 +40,30 @@ public class AdminController {
 	
 	@RequestMapping(value={"/index", "/dashboard", "", "/"}, method=RequestMethod.GET)
 	public String adminIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
-		logger.info("test admin");
+		
 		return "admin/index";
 	}
 	
 	@RequestMapping(value={"/manageUser"}, method=RequestMethod.GET)
-	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
+	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
-		map.put("userList", userService.sltUserList(searchUserParam));
+		List<UserModel> userList= userService.sltUserList(searchUserParam);
+		
+		model.addAttribute("userList", userList);
 		
 		return "admin/manageUser";
 	}
+	
+	@RequestMapping(value={"/manageGroup"}, method=RequestMethod.GET)
+	public String manageGroup(@Valid GroupParam groupParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		
+		List<GroupModel> groupList = groupService.searchGroupSeq(groupParam);
+		
+		model.addAttribute("groupList", groupList);
+		
+		return "admin/manageUser";
+	}
+	
+	
 
 }

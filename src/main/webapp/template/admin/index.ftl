@@ -2,6 +2,9 @@
 <#import "/spring.ftl" as spring/>
 <@layout.myLayout>
 
-admin page
+<ul>
+	<li><a href="/admin/manageUser">유저 관리</a></li>
+	<li><a href="/admin/manageGroup">그룹 관리</a></li>
+</ul>
 
 </@layout.myLayout>

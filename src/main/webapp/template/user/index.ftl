@@ -6,9 +6,23 @@
 	<div class="container-fluid py-5">
 		user
 		<#if userList??>
+		<table>
+			<tr>
+				<td>번호</td>
+				<td>이름</td>
+				<td>권한</td>
+				<td>그룹명</td>
+			</tr>
 			<#list userList as user>
+			<tr>
+				<td>${user.userNo}</td>
+				<td>${user.userNm}</td>
+				<td>${user.userEmail}</td>
+				<td>${user.groupNm}</td>
+			</tr>
 				${user.userNm}
 			</#list>
+		<table>
 		<#else>
 			userModel null
 		</#if>

@@ -36,7 +36,9 @@
 		FROM
 			x_user
 		WHERE
-			group_id = #{groupId} AND
+			<if test="groupId!=null">
+				group_id = #{groupId} AND
+			</if>
 			<if test="searchCate!=null and searchKeyword!=null">
 				#{searchCate} = #{searchKeyword} AND
 			</if>

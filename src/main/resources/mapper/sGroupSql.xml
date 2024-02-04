@@ -19,7 +19,7 @@
 		FROM
 			group
 		WHERE
-			group_p_no=#{groupPNo}
+			group_p_id=#{groupPId}
 	</select>
 	
 </mapper>

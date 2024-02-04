@@ -17,6 +17,8 @@ import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.SearchUserParam;
 import com.example.project.service.UserService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -27,21 +29,19 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value={"/", "", "/index"})
-	public String userIndex(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+	public String userIndex(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
-		logger.info("ttttttttttttttttttt");
 		HttpSession session = request.getSession();
 		if (session.getAttribute("groupId")==null){
 			logger.info("UserController::UserviceImpl::groupId: " + session.getAttribute("groupId"));
 			return "redirect:/";
 		}
 		
-		SearchUserParam searchUserParam = new SearchUserParam();
 		searchUserParam.setGroupId(session.getAttribute("groupId").toString());
 		
 		List<UserModel> userList= userService.sltUserList(searchUserParam);
 		
-		model.put("userList", userList);
+		model.addAttribute("userList", userList);
 		
 		
 		return "user/index";
