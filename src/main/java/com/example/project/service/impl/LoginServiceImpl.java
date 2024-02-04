@@ -63,7 +63,6 @@ public class LoginServiceImpl implements LoginService{
 		UserModel userModel = null;
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			
 			if (loginParam.getUserEmail()==null || loginParam.getUserPwd()==null){
 				logger.warn("LoginServiceImpl::validateLoginUser::Warn: parameter is null");
 				return null;
