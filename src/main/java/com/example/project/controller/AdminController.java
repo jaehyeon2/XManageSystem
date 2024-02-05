@@ -17,6 +17,7 @@ import com.example.project.beans.model.common.GroupModel;
 import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.SearchUserParam;
 import com.example.project.beans.param.common.GroupParam;
+import com.example.project.beans.param.common.UserParam;
 import com.example.project.service.AdminService;
 import com.example.project.service.GroupService;
 import com.example.project.service.UserService;
@@ -64,6 +65,29 @@ public class AdminController {
 		return "admin/manageUser";
 	}
 	
+	@RequestMapping(value={"/addUser"}, method=RequestMethod.GET)
+	public String addUserGET(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		return "admin/addUser";
+	}
 	
-
+	@RequestMapping(value={"/addGroup"}, method=RequestMethod.GET)
+	public String addGroupGET(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		return "admin/addUser";
+	}
+	
+	@RequestMapping(value={"/"}, method=RequestMethod.POST)
+	public String addUserPOST(@Valid UserParam userParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		
+		adminService.saveUser(userParam);
+		
+		return "admin/manageUser";
+	}
+	
+	@RequestMapping(value={"/"}, method=RequestMethod.POST)
+	public String addGroupPOST(@Valid GroupParam groupParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		
+		adminService.saveGroup(groupParam);
+		
+		return "admin/manageGroup";
+	}
 }
