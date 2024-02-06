@@ -3,6 +3,7 @@
 <@layout.myLayout>
 
 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+	<a href="/admin/addUser">등록</a>
 	<div class="container-fluid py-5">
 		<#if userList??>
 		<table>

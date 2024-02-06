@@ -72,7 +72,7 @@ public class AdminController {
 	
 	@RequestMapping(value={"/addGroup"}, method=RequestMethod.GET)
 	public String addGroupGET(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
-		return "admin/addUser";
+		return "admin/addGroup";
 	}
 	
 	@RequestMapping(value={"/"}, method=RequestMethod.POST)
