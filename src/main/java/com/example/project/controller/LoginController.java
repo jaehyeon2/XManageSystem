@@ -68,6 +68,7 @@ public class LoginController {
 		session.setAttribute("userNm", userModel.getUserNm());
 		session.setAttribute("userAuth", userModel.getUserAuth());
 		session.setAttribute("groupId", userModel.getGroupId());
+		
 		session.setMaxInactiveInterval(MAX_INTERVAL);
 		
 		return "redirect:/";

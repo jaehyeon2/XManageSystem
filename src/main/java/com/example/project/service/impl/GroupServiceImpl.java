@@ -32,14 +32,14 @@ public class GroupServiceImpl implements GroupService{
 	public GroupModel searchGroup(GroupParam groupParam) throws SQLException {
 		GroupModel groupModel = null;
 		try{
-			if (groupParam.getGroupNo()==null){
+			if (groupParam.getGroupId()==null){
 				logger.warn("GroupServiceImpl::searchGroup::Warn: parameter is null!");
 				return null;
 			}
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			map.put("groupNo", groupParam.getGroupNo());
+			map.put("groupId", groupParam.getGroupId());
 			groupModel = sDbDao.getMapper(SGroupDao.class).sltGroup(map);
 			
 		}catch (Exception e) {
@@ -54,14 +54,14 @@ public class GroupServiceImpl implements GroupService{
 	public List<GroupModel> searchGroupSeq(GroupParam groupParam) throws SQLException{
 		List<GroupModel> groupModelSeq = null;
 		try{
-			if (groupParam.getGroupNo()==null){
+			if (groupParam.getGroupId()==null){
 				logger.warn("GroupServiceImpl::searchGroupSeq::Warn: parameter is null!");
 				return null;
 			}
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			map.put("groupNo", groupParam.getGroupNo());
+			map.put("groupId", groupParam.getGroupId());
 			groupModelSeq = sDbDao.getMapper(SGroupDao.class).sltGroupSeq(map);
 		}catch(Exception e){
 			logger.error("GroupServiceImpl::searchGroupSeq::Error: " + e.getMessage());

@@ -15,6 +15,7 @@
 
 	<mappers>
 		<mapper resource="mapper/sUserSql.xml" />
+		<mapper resource="mapper/sGroupSql.xml" />
 	</mappers>
 
 </configuration>

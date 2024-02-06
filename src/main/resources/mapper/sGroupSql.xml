@@ -22,7 +22,7 @@
 				1 as level
 			from x_group
 			where 
-				group_p_id=0
+				group_p_id=#{groupId}
 			union all
 			select 
 				g.group_id,

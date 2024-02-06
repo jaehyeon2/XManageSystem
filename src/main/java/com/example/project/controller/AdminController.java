@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,11 +59,14 @@ public class AdminController {
 	@RequestMapping(value={"/manageGroup"}, method=RequestMethod.GET)
 	public String manageGroup(@Valid GroupParam groupParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
+		HttpSession session = request.getSession();
+		groupParam.setGroupId(session.getAttribute("groupId").toString());
+		
 		List<GroupModel> groupList = groupService.searchGroupSeq(groupParam);
 		
 		model.addAttribute("groupList", groupList);
 		
-		return "admin/manageUser";
+		return "admin/manageGroup";
 	}
 	
 	@RequestMapping(value={"/addUser"}, method=RequestMethod.GET)
@@ -72,10 +76,11 @@ public class AdminController {
 	
 	@RequestMapping(value={"/addGroup"}, method=RequestMethod.GET)
 	public String addGroupGET(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+		
 		return "admin/addGroup";
 	}
 	
-	@RequestMapping(value={"/"}, method=RequestMethod.POST)
+	@RequestMapping(value={"/addUser"}, method=RequestMethod.POST)
 	public String addUserPOST(@Valid UserParam userParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
 		adminService.saveUser(userParam);
@@ -83,7 +88,7 @@ public class AdminController {
 		return "admin/manageUser";
 	}
 	
-	@RequestMapping(value={"/"}, method=RequestMethod.POST)
+	@RequestMapping(value={"/addGroup"}, method=RequestMethod.POST)
 	public String addGroupPOST(@Valid GroupParam groupParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
 		adminService.saveGroup(groupParam);
