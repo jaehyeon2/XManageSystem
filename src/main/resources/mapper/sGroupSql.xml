@@ -14,12 +14,31 @@
 	</select>
 	
 	<select id="sltGroupSeq" resultType="com.example.project.beans.model.common.GroupModel">
-		SELECT
-			*
-		FROM
-			group
-		WHERE
-			group_p_id=#{groupPId}
+		with recursive G_LIST as (
+			select
+				group_id,
+				group_nm,
+				group_p_id,
+				1 as level
+			from x_group
+			where 
+				group_p_id=0
+			union all
+			select 
+				g.group_id,
+				g.group_nm,
+				g.group_p_id,
+				1 + level as level
+			from x_group g
+			inner join G_LIST on g.group_p_id=G_LIST.group_id
+		)
+		select
+			group_id,
+			group_nm,
+			IFNULL(group_p_id, 0) as group_p_id,
+			level
+		from
+			G_LIST;
 	</select>
 	
 </mapper>
