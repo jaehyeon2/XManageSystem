@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.project.beans.model.common.GroupModel;
 import com.example.project.beans.model.common.UserModel;
+import com.example.project.beans.param.AuthParam;
 import com.example.project.beans.param.SearchUserParam;
 import com.example.project.beans.param.common.GroupParam;
 import com.example.project.beans.param.common.UserParam;
@@ -81,11 +82,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value={"/addUser"}, method=RequestMethod.POST)
-	public String addUserPOST(@Valid UserParam userParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+	public String addUserPOST(@Valid AuthParam authParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
 		
-		adminService.saveUser(userParam);
+		HttpSession session = request.getSession();
 		
-		return "admin/manageUser";
+		authParam.setGroupId(session.getAttribute("groupId").toString());
+//		authParam.setGroupId(session.getAttribute("groupNm").toString());
+		
+		adminService.saveUser(authParam);
+		
+		return "redirect:/admin/manageGroup";
 	}
 	
 	@RequestMapping(value={"/addGroup"}, method=RequestMethod.POST)

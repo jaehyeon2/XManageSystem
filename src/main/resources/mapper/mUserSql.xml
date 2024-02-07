@@ -17,7 +17,7 @@
 			user_phone,
 			group_id,
 			group_nm,
-			user_deleted,
+			user_delete,
 			insert_time,
 			update_time
 		) VALUES (
@@ -50,22 +50,6 @@
 			update_time = now()
 		WHERE
 			user_no = #{userNo}
-	</update>
-	
-	<update id="udtUser" parameterType="map">
-		UPDATE 
-			x_user
-		SET
-			user_nm=#{userNm},
-			user_rank=#{userRank},
-			user_pos=#{userPos},
-			user_phone=#{userPhone},
-			group_id=#{groupId},
-			group_nm=#{groupNm}
-			update_time = now()
-		WHERE
-			user_no = #{userNo} AND
-			user_email = #{userEmail}
 	</update>
 	
 	<delete id="dltUser" parameterType="map">

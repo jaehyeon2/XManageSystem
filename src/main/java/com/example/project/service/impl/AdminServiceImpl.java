@@ -33,10 +33,11 @@ public class AdminServiceImpl implements AdminService{
 		
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("userNo", userParam.getUserNo());
+			map.put("userNo", "1");
 			map.put("userNm", userParam.getUserNm());
-			map.put("userRank", userParam.getUserRank());
-			map.put("userPos", userParam.getUserPos());
+			map.put("userRank", "2");
+			map.put("userPos", "1");
+			map.put("userAuth", "2");
 			map.put("userEmail", userParam.getUserEmail());
 			map.put("userPwd", userParam.getUserPwd());
 			map.put("userPhone", userParam.getUserPhone());

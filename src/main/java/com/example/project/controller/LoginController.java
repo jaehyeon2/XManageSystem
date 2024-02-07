@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.project.beans.model.common.UserModel;
-import com.example.project.beans.param.LoginParam;
+import com.example.project.beans.param.AuthParam;
 import com.example.project.service.LoginService;
 
 import jakarta.validation.Valid;
@@ -44,7 +44,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value={"/auth"})
-	public String loginAuth(@Valid LoginParam loginParam, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String loginAuth(@Valid AuthParam loginParam, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("userId");

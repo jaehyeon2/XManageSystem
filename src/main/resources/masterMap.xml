@@ -14,7 +14,8 @@
  	</settings>
 
 	<mappers>
-		<!-- <mapper resource="mapper/mGroupSql.xml" />-->
+		<mapper resource="mapper/mGroupSql.xml" />
+		<mapper resource="mapper/mUserSql.xml" />
 	</mappers>
 
 </configuration>
