@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public List<GroupModel> searchGroupSeq(GroupParam groupParam) throws SQLException{
-		List<GroupModel> groupModelSeq = null;
+	public List<GroupModel> searchGroupList(GroupParam groupParam) throws SQLException{
+		JSONObject groupJson = null;
 		try{
 			if (groupParam.getGroupId()==null){
 				logger.warn("GroupServiceImpl::searchGroupSeq::Warn: parameter is null!");
@@ -62,12 +63,24 @@ public class GroupServiceImpl implements GroupService{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			map.put("groupId", groupParam.getGroupId());
-			groupModelSeq = sDbDao.getMapper(SGroupDao.class).sltGroupSeq(map);
+			List<GroupModel> groupModelList = sDbDao.getMapper(SGroupDao.class).sltGroupSeq(map);
+			
+			groupJson = this.groupListToJson(groupModelList);
+			
 		}catch(Exception e){
 			logger.error("GroupServiceImpl::searchGroupSeq::Error: " + e.getMessage());
 			return null;
 		}
-		return groupModelSeq;
+//		return groupModelList;
+		return null;
+	}
+	
+	private JSONObject groupListToJson(List<GroupModel> groupList){
+		JSONObject groupJson = null;
+		
+		
+		
+		return groupJson;
 	}
 
 }

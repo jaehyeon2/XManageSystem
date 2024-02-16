@@ -33,9 +33,9 @@
 			inner join G_LIST on g.group_p_id=G_LIST.group_id
 		)
 		select
-			group_id,
-			group_nm,
-			IFNULL(group_p_id, 0) as group_p_id,
+			group_id as id,
+			group_nm as name,
+			IFNULL(group_p_id, 0) as pid,
 			level
 		from
 			G_LIST;

@@ -10,6 +10,6 @@ public interface GroupService {
 
 	public GroupModel searchGroup(GroupParam groupParam) throws SQLException;
 	
-	public List<GroupModel> searchGroupSeq(GroupParam groupParam) throws SQLException;
+	public List<GroupModel> searchGroupList(GroupParam groupParam) throws SQLException;
 	
 }
