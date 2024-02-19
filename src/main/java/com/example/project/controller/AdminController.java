@@ -64,10 +64,10 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		groupParam.setGroupId(session.getAttribute("groupId").toString());
 		
-		List<GroupModel> groupList = groupService.searchGroupList(groupParam);
+		String groupList = groupService.searchGroupList(groupParam);
 		
 //		JSONObject 
-//		model.addAttribute("groupList", groupList);
+		model.addAttribute("groupList", groupList);
 		
 		return "admin/manageGroup";
 	}

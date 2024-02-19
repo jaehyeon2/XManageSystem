@@ -52,8 +52,9 @@ public class GroupServiceImpl implements GroupService{
 	}
 	
 	@Override
-	public List<GroupModel> searchGroupList(GroupParam groupParam) throws SQLException{
-		JSONObject groupJson = null;
+	public String searchGroupList(GroupParam groupParam) throws SQLException{
+		String groupJson = null;
+		logger.info(groupParam.getGroupId());
 		try{
 			if (groupParam.getGroupId()==null){
 				logger.warn("GroupServiceImpl::searchGroupSeq::Warn: parameter is null!");
@@ -61,7 +62,7 @@ public class GroupServiceImpl implements GroupService{
 			}
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-			
+				
 			map.put("groupId", groupParam.getGroupId());
 			List<GroupModel> groupModelList = sDbDao.getMapper(SGroupDao.class).sltGroupSeq(map);
 			
@@ -71,16 +72,26 @@ public class GroupServiceImpl implements GroupService{
 			logger.error("GroupServiceImpl::searchGroupSeq::Error: " + e.getMessage());
 			return null;
 		}
-//		return groupModelList;
-		return null;
+		return groupJson;
 	}
 	
-	private JSONObject groupListToJson(List<GroupModel> groupList){
+	private String groupListToJson(List<GroupModel> groupList){
 		JSONObject groupJson = null;
 		
+		StringBuffer tempJson = new StringBuffer("[");
 		
+		for (GroupModel g : groupList){
+			
+			tempJson.append("{").append("id:").append("\'" + g.getGroupId() + "\'");
+			if (g.getGroupPId()!=null || g.getGroupPId().isEmpty()){
+				tempJson.append(",").append("pid:").append("\'" + g.getGroupPId() + "\'");
+			}
+			tempJson.append(",").append("name:").append("\'" + g.getGroupNm() + "\'").append("},");
+		}
+		tempJson.append("]");
+		System.out.println(tempJson);
 		
-		return groupJson;
+		return tempJson.toString();
 	}
 
 }

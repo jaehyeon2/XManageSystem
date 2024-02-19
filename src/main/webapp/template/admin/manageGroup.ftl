@@ -5,7 +5,7 @@
 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
 	<a href="/admin/addUser">등록</a>
 	<div class="container-fluid py-5">
-		<#if groupList??>
+		<#--<#if groupList??>
 		<table>
 			<tr>
 				<td>번호</td>
@@ -26,8 +26,19 @@
 		<table>
 		<#else>
 			userModel null
-		</#if>
+		</#if>-->
+	</div>
+	<div if="test">
 	</div>
 </div>
-
+<script src="/static/libs/orgchart-8.13.34/orgchart.js"></script>
+<script>
+	var groupList = ${groupList};
+	var chart = new OrgChart(document.getElementById("test"), {
+			nodeBinding:{
+				field_0:'name'
+			}
+		}
+	)
+</script>
 </@layout.myLayout>

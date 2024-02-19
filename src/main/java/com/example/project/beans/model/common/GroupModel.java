@@ -9,7 +9,7 @@ public class GroupModel implements Serializable{
 	private String groupId;
 	private String groupNo;
 	private String groupNm;
-	private String groupPNo;
+	private String groupPId;
 	
 	public String getGroupId() {
 		return groupId;
@@ -29,10 +29,10 @@ public class GroupModel implements Serializable{
 	public void setGroupNm(String groupNm) {
 		this.groupNm = groupNm;
 	}
-	public String getGroupPNo() {
-		return groupPNo;
+	public String getGroupPId() {
+		return groupPId;
 	}
-	public void setGroupPNo(String groupPNo) {
-		this.groupPNo = groupPNo;
+	public void setGroupPId(String groupPId) {
+		this.groupPId = groupPId;
 	}
 }
