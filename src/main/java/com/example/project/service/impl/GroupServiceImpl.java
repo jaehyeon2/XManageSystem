@@ -29,6 +29,9 @@ public class GroupServiceImpl implements GroupService{
 	@Autowired
 	private SqlSession sDbDao;
 	
+	
+	private String URL = "http://localhost:9001/";
+	
 	@Override
 	public GroupModel searchGroup(GroupParam groupParam) throws SQLException {
 		GroupModel groupModel = null;
@@ -86,7 +89,8 @@ public class GroupServiceImpl implements GroupService{
 			if (g.getGroupPId()!=null || g.getGroupPId().isEmpty()){
 				tempJson.append(",").append("pid:").append("\'" + g.getGroupPId() + "\'");
 			}
-			tempJson.append(",").append("name:").append("\'" + g.getGroupNm() + "\'").append("},");
+			tempJson.append(",").append("name:").append("\'" + g.getGroupNm() + "\'");
+			tempJson.append(",").append("url:").append("\'" + URL + "?groupId=" + g.getGroupId()+"\'").append("},");
 		}
 		tempJson.append("]");
 		System.out.println(tempJson);
