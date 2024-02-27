@@ -65,7 +65,7 @@ public class AdminController {
 		groupParam.setGroupId(session.getAttribute("groupId").toString());
 		
 		String groupList = groupService.searchGroupList(groupParam);
-		
+		logger.info("test");
 //		JSONObject 
 		model.addAttribute("groupList", groupList);
 		

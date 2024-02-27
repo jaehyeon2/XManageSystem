@@ -31,7 +31,7 @@ public class GroupController {
 		groupService.searchGroupList(groupParam);
 		
 		
-		return null;
+		return "admin/manageGroup";
 	}
 	
 }

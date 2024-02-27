@@ -32,6 +32,11 @@ public class GroupServiceImpl implements GroupService{
 	
 	private String URL = "http://localhost:9001/";
 	
+//	@Override
+//	public boolean saveGroup(GroupParam groupParam) throws SQLException { 
+//		
+//	}
+	
 	@Override
 	public GroupModel searchGroup(GroupParam groupParam) throws SQLException {
 		GroupModel groupModel = null;
