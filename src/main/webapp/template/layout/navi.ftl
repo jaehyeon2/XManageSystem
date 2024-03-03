@@ -14,8 +14,8 @@
 		<li>
 			<a href="/board">board</a>
 		</li>
-		<#if user.userNm??>
-			${user.userNm}님
+		<#if user??>
+			${user.userNm}님 <a href="/login/logout">logout</a>
 		<#else>
 			<li>
 				<a href="/login">login</a>

@@ -14,6 +14,7 @@ import com.example.project.beans.model.common.UserModel;
 import com.example.project.controller.common.BasicController;
 
 @Controller
+@RequestMapping("/")
 public class IndexController extends BasicController{
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());

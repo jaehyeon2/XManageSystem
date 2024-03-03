@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.project.beans.model.common.UserModel;
 import com.example.project.beans.param.AuthParam;
+import com.example.project.controller.common.BasicController;
 import com.example.project.service.LoginService;
 
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BasicController{
 	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -34,8 +35,10 @@ public class LoginController {
 	public String loginIndex(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		HttpSession session = request.getSession();
-		if (session.getAttribute("userNm")!=null){
-			logger.info("LoginController::loginIndex::userNm: " + session.getAttribute("userNm"));
+		
+		UserModel user = this.getUser(session);
+		if (user!=null){
+			logger.info("LoginController::loginIndex::userNm: " + user.getUserNm());
 			return "redirect:/";
 		}
 		
@@ -71,10 +74,11 @@ public class LoginController {
 	@RequestMapping(value={"/logout"})
 	public String logout(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
-		session.removeAttribute("userId");
-		session.removeAttribute("userNm");
-		session.removeAttribute("userAuth");
+		logger.info("1");
+		session.removeAttribute("user");
+		logger.info("12");
 		session.invalidate();
+		logger.info("123");
 		
 		return "redirect:/";
 	}
