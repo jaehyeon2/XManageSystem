@@ -21,6 +21,7 @@ import com.example.project.beans.param.AuthParam;
 import com.example.project.beans.param.SearchUserParam;
 import com.example.project.beans.param.common.GroupParam;
 import com.example.project.beans.param.common.UserParam;
+import com.example.project.controller.common.BasicController;
 import com.example.project.service.AdminService;
 import com.example.project.service.GroupService;
 import com.example.project.service.UserService;
@@ -29,7 +30,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BasicController{
 	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -43,13 +44,14 @@ public class AdminController {
 	private GroupService groupService;
 	
 	@RequestMapping(value={"/index", "/dashboard", "", "/"}, method=RequestMethod.GET)
-	public String adminIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) throws Exception{
-		
+	public String adminIndex(HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session, ModelMap map) throws Exception{
 		return "admin/index";
 	}
 	
 	@RequestMapping(value={"/manageUser"}, method=RequestMethod.GET)
-	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception{
+	public String manageUser(@Valid SearchUserParam searchUserParam, HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session, ModelMap model) throws Exception{
 		
 		List<UserModel> userList= userService.sltUserList(searchUserParam);
 		

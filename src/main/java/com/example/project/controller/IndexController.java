@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.project.beans.model.common.UserModel;
+import com.example.project.controller.common.BasicController;
+
 @Controller
-public class IndexController {
+public class IndexController extends BasicController{
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -19,11 +22,10 @@ public class IndexController {
 	public String index(HttpServletRequest request, ModelMap model) throws Exception{
 		HttpSession session = request.getSession();
 		
-		if (session.getAttribute("userNm")!=null){
-			model.addAttribute("userNm", session.getAttribute("userNm").toString());
-			logger.info("IndexController::index::userNm: " + session.getAttribute("userNm"));
-			logger.info("IndexController::index::groupId: " + session.getAttribute("groupId"));
-			
+		UserModel user = this.getUser(session);
+		
+		if (user!=null){
+			model.addAttribute("user", user);
 		}
 		
 		return "index";

@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.example.project.beans.model.common.UserModel;
+
 
 public class UserInterceptor implements HandlerInterceptor{
 
@@ -47,8 +49,7 @@ public class UserInterceptor implements HandlerInterceptor{
 
 		try {
 			// Get userInfo from session
-			String user = session.getAttribute("user").toString();
-			logger.info("USER: "+user);
+			UserModel user = (UserModel)session.getAttribute("user");
 			if(user == null) {
 				throw new LoginException();
 			}

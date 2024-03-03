@@ -47,10 +47,7 @@ public class LoginController {
 	public String loginAuth(@Valid AuthParam loginParam, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("userId");
-		session.removeAttribute("userNm");
-		session.removeAttribute("userAuth");
-		session.removeAttribute("groupId");
+		session.removeAttribute("user");
 		
 		UserModel userModel = loginService.validateLoginUser(loginParam);
 		
@@ -64,10 +61,7 @@ public class LoginController {
 		
 		session = request.getSession(true);
 		logger.info("LoginController::loginAuth::NewSessionID: "+session.getId());
-		session.setAttribute("userId", userModel.getUserId());
-		session.setAttribute("userNm", userModel.getUserNm());
-		session.setAttribute("userAuth", userModel.getUserAuth());
-		session.setAttribute("groupId", userModel.getGroupId());
+		session.setAttribute("user", userModel);
 		
 		session.setMaxInactiveInterval(MAX_INTERVAL);
 		
